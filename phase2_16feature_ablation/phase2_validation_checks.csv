@@ -1,0 +1,19 @@
+check,status,details
+1_train_checksum_matches_phase1,PASS,5824aa4da1d63de8c128f83839f819b5b9aa1d32e4dc99ae9429ffc465b6b87d
+2_test_checksum_matches_phase1,PASS,4b6b47051bbd0916f331e2a1b162701d52731a0ef32d5917e19ad25b89d274b2
+3_no_train_test_overlap,PASS,0 overlapping vessels
+4_exactly_720_primary_rows,PASS,720 rows
+5_five_seeds_per_condition,PASS,0 combinations without exactly 5 seeds
+6_retention_100_at_full_rate,PASS,0 exceptions
+7_retention_sd_zero_at_full_rate,PASS,max SD=0.0
+8_exactly_16_predictors,PASS,"16 features: ['mean_sog', 'std_sog', 'median_sog', 'max_sog', 'sog_range', 'mean_abs_delta_sog', 'std_delta_sog', 'mean_abs_delta_cog', 'std_delta_cog', 'max_abs_delta_cog', 'mean_dist_port', 'std_dist_port', 'frac_near_port', 'frac_stationary', 'mean_lat', 'mean_lon']"
+9_timing_features_absent_from_RF,PASS,confirmed by direct membership check on FEATURE_COLS_16
+10_timing_features_absent_from_IF,PASS,"run_phase2_experiment.py fits iso_ad_16/iso_g on FEATURE_COLS_16 arrays only -- code-inspected, no 18-feature array is ever passed to an IsolationForest.fit() call for 16F_RELABELED."
+11_lags_recomputed_per_phase1_procedure,PASS,"build_sampled_features() / recompute_lags_and_derive() are the exact same Phase-1-validated functions, called with feature_cols=FEATURE_COLS_16 -- no new lag logic was written for Phase 2."
+12_adaptive_full_stream_for_selection_only,PASS,"select_adaptive() (unchanged from Phase 1) receives compute_selection_deltas() output for event identification only; recompute_lags_and_derive() is applied identically afterward to build feature values, same as every other strategy."
+13_phase1_outputs_not_modified,PASS,split_checksums.txt read before and after Phase 2 execution is byte-identical; no write call to phase1_18feature_corrected/ exists anywhere in run_phase2_experiment.py or finalize_phase2.py (code-inspected).
+16_failed_conditions_represented,PASS,"0 of 720 primary rows have status=FAIL; 0 of 360 fixed-label rows have status=FAIL -- all present as explicit rows, none silently dropped."
+17_18F_values_reproduce_phase1_exactly,PASS,0 mismatches found between timing_ablation_comparison 18F columns and cs18 source.
+15_figure_matches_source_csv,PASS,20 plotted points checked against timing_ablation_comparison.csv.
+phase1_figure_not_replaced,PASS,"figure1_corrected.png/.pdf remain in phase1_18feature_corrected/, untouched; Phase 2 figure saved under a distinct filename in phase2_16feature_ablation/."
+14_table_values_match_source_csv,PASS,"144 (task,strategy,rate) cells checked across all 4 retention tables against condition_summary_16_features.csv; 0 mismatches."

@@ -1,0 +1,44 @@
+[
+  [
+    "cargo",
+    352,
+    101,
+    "fit OK, 18 anomalies"
+  ],
+  [
+    "fishing",
+    244,
+    50,
+    "fit OK, 13 anomalies"
+  ],
+  [
+    "other",
+    427,
+    108,
+    "fit OK, 22 anomalies"
+  ],
+  [
+    "passenger",
+    199,
+    47,
+    "fit OK, 10 anomalies"
+  ],
+  [
+    "pleasure",
+    401,
+    93,
+    "fit OK, 20 anomalies"
+  ],
+  [
+    "tanker",
+    260,
+    67,
+    "fit OK, 13 anomalies"
+  ],
+  [
+    "towing_tug",
+    1283,
+    330,
+    "fit OK, 65 anomalies"
+  ]
+]

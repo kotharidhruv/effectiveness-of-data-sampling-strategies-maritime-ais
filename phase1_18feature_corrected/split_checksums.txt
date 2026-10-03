@@ -1,0 +1,5 @@
+n_train_vessels=3551
+n_test_vessels=888
+train_mmsi_sha256=5824aa4da1d63de8c128f83839f819b5b9aa1d32e4dc99ae9429ffc465b6b87d
+test_mmsi_sha256=4b6b47051bbd0916f331e2a1b162701d52731a0ef32d5917e19ad25b89d274b2
+random_state=42 test_size=0.2 universe=gulf_clean.parquet(post SOG/MMSI/30-ping filters only)

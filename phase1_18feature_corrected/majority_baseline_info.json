@@ -1,0 +1,19 @@
+{
+  "VC": {
+    "majority_class": 6,
+    "majority_class_label": "towing_tug",
+    "majority_class_f1": 0.08373509261608729
+  },
+  "FD": {
+    "majority_class": 0,
+    "majority_class_f1": 0.0
+  },
+  "AD": {
+    "majority_class": 0,
+    "majority_class_f1": 0.0
+  },
+  "ADT": {
+    "majority_class": 0,
+    "majority_class_f1": 0.0
+  }
+}

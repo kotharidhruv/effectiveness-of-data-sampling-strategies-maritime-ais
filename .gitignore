@@ -1,0 +1,17 @@
+# Raw / intermediate data (regenerate from public NOAA source, see README)
+*.parquet
+*.duckdb
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

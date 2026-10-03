@@ -1,0 +1,16 @@
+check,status,details
+A_five_seeds_per_condition,PASS,"All 144 (task,strategy,rate) combinations have exactly 5 seeds."
+B_retention_100_at_full_rate,PASS,All 120 OK rows at rate=1.0 have retention_percent == 100.0 exactly.
+C_retention_sd_zero_at_full_rate,PASS,"All 24 (task,strategy) SDs at rate=1.0 equal 0.0 exactly."
+D_no_train_test_overlap,PASS,"0 vessels overlap (3551 train, 888 test)."
+E_same_split_used_throughout,PASS,"A single train_raw_prelag.parquet/test_raw_prelag.parquet pair (fixed at run start) was passed into every strategy/rate/seed/task call in run_phase1_experiment.py -- no per-condition or per-task re-split occurs anywhere in that script (confirmed by code inspection: train_raw/test_raw are loaded once at the top and never reassigned). Checksums: n_train_vessels=3551
+n_test_vessels=888
+train_mmsi_sha256=5824aa4da1d63de8c128f83839f819b5b9aa1d32e4dc99ae9429ffc465b6b87d
+test_mmsi_sha256=4b6b47051bbd0916f331e2a1b162701d52731a0ef32d5917e19ad25b89d274b2
+random_state=42 test_size=0.2 universe=gulf_clean.parquet(post SOG/MMSI/30-ping filters only)"
+F_figure_matches_tables,PASS,"All 120 plotted (mean, SD) pairs match their source table cells exactly."
+G_preprocessing_reconciles,PASS,"Every stage rows_before equals the prior stage rows_after; final stage matches gulf_clean.parquet (2,887,826 rows, 4,439 vessels)."
+H_retained_le_available,PASS,"No condition retains more pings than the 2,304,655 available in the full training stream (checked directly; retained_training_pings never exceeds this bound in any of 720 rows)."
+I_actual_rates_captured_not_assumed,PASS,"actual_ping_retention_percent is computed per condition from retained_training_pings/2,304,655, not assumed equal to the nominal target, for every strategy including Temporal and Importance. Example divergences: importance@1%=1.00%; importance@5%=5.00%; importance@10%=10.00%; importance@25%=25.00%; importance@50%=43.23%; temporal@1%=1.14%; temporal@5%=4.44%; temporal@10%=9.83%; temporal@25%=26.49%; temporal@50%=55.36%"
+J_valid_vessel_counts_are_actual_training_counts,PASS,"vessels_entering_training is derived per task: for VC/FD it equals unique_vessels_with_valid_final_feature_vector (proven equal by construction -- the type-label merge covers every training vessel, so it never drops a row); for AD/ADT it equals training_positive_count + training_negative_count, which is the literal size of y_train passed to RandomForestClassifier.fit() for that condition."
+failed_conditions,PASS,0 of 720 condition rows have status=FAIL (see condition_metrics_18_features.csv fail_reason column for details).

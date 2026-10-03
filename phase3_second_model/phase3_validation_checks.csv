@@ -1,0 +1,23 @@
+check,status,details
+4_exactly_180_18F_rows,PASS,180 rows
+5_exactly_180_16F_rows,PASS,180 rows
+6_five_seeds_per_condition,PASS,"18F bad=0, 16F bad=0"
+1_train_checksum_matches_phase1_2,PASS,5824aa4da1d63de8c128f83839f819b5b9aa1d32e4dc99ae9429ffc465b6b87d
+2_test_checksum_matches_phase1_2,PASS,4b6b47051bbd0916f331e2a1b162701d52731a0ef32d5917e19ad25b89d274b2
+3_no_train_test_overlap,PASS,0 overlap
+16_retention_100_at_full_rate_18F,PASS,0 exceptions in 18F
+16_retention_100_at_full_rate_16F,PASS,0 exceptions in 16F
+7_18F_retained_pings_match_phase1,PASS,0/180 mismatches
+8_18F_valid_vessels_match_phase1,PASS,0/180 mismatches
+9_16F_retained_pings_match_phase2,PASS,0/180 mismatches
+10_16F_valid_vessels_match_phase2,PASS,0/180 mismatches
+11_labels_match_corresponding_RF_experiment,PASS,"18F mismatches=0, 16F mismatches=0"
+12_scaler_fit_training_only,PASS,"sklearn Pipeline(StandardScaler(), LogisticRegression()) fit via pipe.fit(X_train, y_train) exclusively; X_eval/X_test is only ever passed to pipe.predict(), which uses the already-fitted scaler -- code-inspected, no separate scaler.fit(X_test) call exists anywhere."
+13_no_timing_feature_in_16F_model,PASS,FEATURE_COLS_16 (imported unchanged from sampled_feature_builder.py) excludes both timing features; same object used for 16F grid and 16F label generation.
+14_exactly_18_features_in_18F_model,PASS,"len(FEATURE_COLS_18) == 18, imported unchanged from Phase 1."
+15_exactly_16_features_in_16F_model,PASS,"len(FEATURE_COLS_16) == 16, imported unchanged from Phase 2."
+17_no_phase1_2_output_overwritten,PASS,phase1_18feature_corrected/split_checksums.txt unchanged; phase2_16feature_ablation/ directory listing unchanged (28 files); no write call to either directory exists in run_phase3_experiment.py or this script.
+18_convergence_recorded_every_model,PASS,"converged column populated for all 360 rows; non-converged count: 18F=0, 16F=0"
+19_no_condition_silently_omitted,PASS,"18F FAIL rows: 0, 16F FAIL rows: 0 -- all present as explicit rows."
+20_comparison_csv_matches_source,PASS,ADT_model_sensitivity_18F RF columns cross-checked directly against condition_summary_18_features.csv ADT rows.
+figure_matches_source_csv,PASS,60 plotted points checked against ADT_model_sensitivity_*.csv.
